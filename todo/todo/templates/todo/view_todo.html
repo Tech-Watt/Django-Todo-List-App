@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Todo</title>
+</head>
+<body>
+    <div>
+        <h1>All your Todos Here</h1>
+        <a href="{% url 'homepage'%}">Home</a>
+        <br>
+        <a href="{% url 'create_todo'%}">Create Todo</a>
+
+        <div>
+            {% for todo in todos %}
+            <h4>Title: {{todo.title}}</h4>
+            <p>Description: {{todo.description}}</p>
+            <p>Date Created: {{todo.date_created}}</p>
+
+            {% if todo.date_completed  is not None%}
+            <p>Date Completed: {{todo.date_completed}}</p>
+            {% endif %}
+
+            <form method="post">
+                {%csrf_token %}
+                <button name="delete" value="{{todo.id}}">Delete</button>
+                <button name="edit" value="{{todo.id}}">Edit</button>
+            </form>
+
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

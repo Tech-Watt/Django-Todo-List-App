@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Todo</title>
+</head>
+<body>
+    <div>
+        <h1>Create Todo Here</h1>
+        <a href="{% url 'homepage'%}">Home</a>
+        <br>
+        <a href="{% url 'view_todo'%}">View Todos</a>
+        <div>
+            <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Add Todo">
+
+        </form>
+        </div>
+
+    </div>
+</body>
+</html>
